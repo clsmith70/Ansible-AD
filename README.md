@@ -7,7 +7,9 @@ to authenticate to the exchange hybrid server from the target role server (a Dom
    no_log: true
 ```
 
-To use any of the Ansible-AD roles in this repository, you will need to create a new credential type to facilitate authentication.
+---
+
+ To use any of the Ansible-AD roles in this repository, you will need to create a new credential type to facilitate authentication.
 
 **Name**: Active Directory  
 **Input Configuration**:
@@ -35,6 +37,30 @@ To use any of the Ansible-AD roles in this repository, you will need to create a
      AD_USERNAME: '{{ username }}'
    ```
 
+Some role tasks send email to recipients and will require the creation of the following new credential type.&nbsp; This credential expects that the account that owns it has a mailbox and license in Microsoft 365. &nbsp; The from address will always be the UPN of this credential.
+
+**Name**: Microsoft 365
+**Input Configuration**:
+  
+   ```yaml
+   fields:
+     - id: userprincipalname
+       type: string
+       label: Microsoft 365 UPN
+     - id: password
+       type: string
+       label: M365 User Password
+       secret: true
+   ```
+
+**Injector configuration**:
+
+   ```yaml
+   extra_vars:
+     M365_PASSWORD: '{{ password }}'
+     M365_UPN: '{{ userprincipalname }}'
+   ```
+
 ## Roles
 
 This is the list of roles currently in this repository.&nbsp; The root main.yml file in each one requires one parameter - ```role_name```.
@@ -43,9 +69,9 @@ This is the list of roles currently in this repository.&nbsp; The root main.yml 
 
 This role is used to perform CRUD operations on Exchange Contact objects in Active Directory.&nbsp; It is designed for use in hybrid Exchange environments.
 
-- ### Task: [`create`](exchange-contact/create/tasks/)
+- ### Task: [`create`](exchange-contact/create/)
 
-   Creates a new Exchange Contact.&nbsp; It requires the following information:  
+   Creates a new Exchange Contact.&nbsp; It expects the following information:  
    | Description            | Jinja2 variable name     | Required | Where specified       |
    | ---------------------- | ------------------------ |:--------:| --------------------- |
    | Contact First Name     | ```contact_first_name``` | yes      | extra_vars            |
@@ -53,3 +79,15 @@ This role is used to perform CRUD operations on Exchange Contact objects in Acti
    | External Email Address | ```contact_email```      | yes      | extra_vars            |
    | Exchange URI           | ```exchange_uri```       | yes      | role vars, extra_vars |
    | Contact OU Path        | ```contact_ou_path```    | yes      | role vars, extra_vars |
+
+- ### Task: ['read'](exchange-contact/read/)
+
+   Reads Exchange contacts from the directory.&nbsp; Will read one or more contacts, specified by any of the following identity values: Name, Alias, Distinguished name, Canonical DN, Email Address, or GUID.  
+   This task expects the following information:  
+   | Description            | Jinja2 variable name     | Required | Where specified       |
+   | ---------------------- | ------------------------ |:--------:| --------------------- |
+   | Contact identifier     | ```contact_identity```   | yes      | extra_vars            |
+   | Exchange URI           | ```exchange_uri```       | yes      | role vars, extra_vars |
+   | Recipient email address| ```recipient_address```  | yes      | extra_vars            |
+   | Email host address     | ```smtp_host_name```     | yes      | role vars, extra_vars |
+   | Email host port        | ```smtp_host_port```     | yes      | role vars, extra_vars |
