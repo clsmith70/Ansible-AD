@@ -1,0 +1,2 @@
+- name: Create new contact
+  include_tasks: create_mail_contact.yml
