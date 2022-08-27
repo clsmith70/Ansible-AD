@@ -46,10 +46,10 @@ This role is used to perform CRUD operations on Exchange Contact objects in Acti
 - ### Task: [`create`](exchange-contact/create/tasks/)
 
    Creates a new Exchange Contact.&nbsp; It requires the following information:  
-   | Description            | Jinja2 variable name     |
-   | ---------------------- | ------------------------ |
-   | Contact First Name     | ```contact_first_name``` |
-   | Contact Last Name      | ```contact_last_name```  |
-   | External Email Address | ```contact_email```      |
-   | Exchange URI           | ```exchange_uri```       |
-   | Contact OU Path        | ```contact_ou_path```    |
+   | Description            | Jinja2 variable name     | Required | Where specified       |
+   | ---------------------- | ------------------------ |:--------:| --------------------- |
+   | Contact First Name     | ```contact_first_name``` | yes      | extra_vars            |
+   | Contact Last Name      | ```contact_last_name```  | yes      | extra_vars            |
+   | External Email Address | ```contact_email```      | yes      | extra_vars            |
+   | Exchange URI           | ```exchange_uri```       | yes      | role vars, extra_vars |
+   | Contact OU Path        | ```contact_ou_path```    | yes      | role vars, extra_vars |
