@@ -1,0 +1,33 @@
+- name: Create mail contact
+  no_log: true
+  ansible.windows.win_powershell:
+    script: |
+      Write-Verbose -Message "Establish connection to Exchange on-premises"
+      $password = ConvertTo-SecureString -String "{{ AD_PASSWORD }}" -AsPlainText -Force
+      $credential = New-Object -TypeName System.Management.Automation.PSCredential("{{ AD_USERNAME }}", $password)
+      $hx = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri "{{ exchange_uri }}" -Name HybridServer -Credential $credential
+      Import-PSSession -Session $hx | Out-Null
+
+      Write-Verbose -Message "Create contact splat object"
+      $contactDetails = @{
+        DisplayName = "{{ contact_first_name }} {{ contact_last_name }}"
+        Name = "{{ contact_first_name }}{{ contact_last_name }}"
+        Alias = "{{ contact_first_name }}{{ contact_last_name }}"
+        OrganizationalUnit = "{{ contact_ou_path }}"
+        FirstName = "{{ contact_first_name }}"
+        LastName = "{{ contact_last_name }}"
+        ExternalEmailAddress = "{{ contact_email }}"
+      }
+
+      Write-Verbose -Message "Create contact"
+      New-MailContact @contactDetails | Out-Null
+
+      Write-Verbose -Message "Return new contact"
+      if (Get-MailContact -Identity $contactDetails.Alias) {
+        Write-Output (Get-MailContact -Identity $contactDetails.Alias | Select-Object -Property DisplayName,Alias,PrimarySmtpAddress,RecipientType)
+      }
+  register: mail_contact_detail
+
+- set_stats:
+    data:
+      mail_contact: "{{ mail_contact_detail.output }}"
