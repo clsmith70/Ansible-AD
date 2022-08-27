@@ -8,6 +8,8 @@ A repository of Ansible roles and playbooks using the ansible collection to mana
 
 ---
 
+[`Credentials`](CREDENTIALS.md) information
+
  To use any of the Ansible-AD roles in this repository, you will need to create a new credential type to facilitate authentication.
 
 **Name**: Active Directory  
