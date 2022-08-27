@@ -43,7 +43,7 @@ This is the list of roles currently in this repository.&nbsp; The root main.yml 
 
 This role is used to perform CRUD operations on Exchange Contact objects in Active Directory.&nbsp; It is designed for use in hybrid Exchange environments.
 
-- ### Task: [`new`](exchange-contact/new/)
+- ### Task: [`new`](exchange-contact/new/tasks/)
 
    Creates a new Exchange Contact.&nbsp; It requires the following information:  
    | Description            | Jinja2 variable name     |
