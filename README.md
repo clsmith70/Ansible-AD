@@ -18,7 +18,7 @@ This is the list of roles currently in this repository.&nbsp; The root main.yml 
 
 This role is used to perform CRUD operations on Exchange Contact objects in Active Directory.&nbsp; It is designed for use in hybrid Exchange environments.
 
-- #### Task: [`create`](exchange-contact/create/)
+- ### Task: [`create`](exchange-contact/create/)
 
    Creates a new Exchange Contact.  
 
@@ -31,7 +31,7 @@ This role is used to perform CRUD operations on Exchange Contact objects in Acti
    | Exchange URI           | ```exchange_uri```       | yes      | role vars, extra_vars |
    | Contact OU Path        | ```contact_ou_path```    | yes      | role vars, extra_vars |
 
-- #### Task: [`read`](exchange-contact/read/)
+- ### Task: [`read`](exchange-contact/read/)
 
    Reads Exchange contacts from the directory.&nbsp; Will read one or more contacts, specified by any of the following identity values: Name, Alias, Distinguished name, Canonical DN, Email Address, or GUID.&nbsp; One or more recipients can be specified to recieve the report.&nbsp; Both the ```contact_identity``` and ```recipient_address``` variables are expected to be a [`list`](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#list-variables) variable.  
 
