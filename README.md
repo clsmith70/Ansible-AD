@@ -72,7 +72,7 @@ This role is used to perform CRUD operations on Exchange Contact objects in Acti
 - #### Task: [`create`](exchange-contact/create/)
 
    Creates a new Exchange Contact.  
-   
+
    This task is configured with the following variables:  
    | Description            | Variable name            | Required | Where specified       |
    | ---------------------- | ------------------------ |:--------:| --------------------- |
