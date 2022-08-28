@@ -8,7 +8,7 @@ A repository of Ansible roles and playbooks using the ansible collection to mana
 
 ---
 
-View information about custom [`Credential`](CREDENTIALS.md) types that are used in the tasks in this Ansible role.
+View information about custom [`Credential`](CREDENTIALS.md) types that are used in the tasks in this Ansible role.&nbsp; An Active Directory credential is needed to perform operations in AD.&nbsp; For plays that send email, a Sendgrid API key is required to send HTML reports.
 
 ## Roles
 
