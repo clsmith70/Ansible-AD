@@ -1,4 +1,0 @@
----
-exchange_uri: "http://exch-a.adlab.test.loc"
-smtp_host_name: smtp.office365.com
-smtp_host_port: 587
