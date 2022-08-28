@@ -23,7 +23,7 @@
   community.general.sendgrid:
     host: "{{ smtp_host_name }}"
     port: "{{ smtp_host_port }}"
-    api_key: "{{ M365_PASSWORD }}"
+    api_key: "{{ SENDGRID_API_KEY }}"
     to_addresses: "{{ recipient_email }}"
     from_address: "{{ from_address }}"
     from_name: "{{ from_name }}"
