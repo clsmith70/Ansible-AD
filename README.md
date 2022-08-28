@@ -45,3 +45,13 @@ This role is used to perform CRUD operations on Exchange Contact objects in Acti
 - ### Task: update
 
    Due to the complexity of covering multiple scenarios, the update task is being omitted.&nbsp; Updates should be left to administrators or be handled as a delete/recreate operation.
+
+- ### Task: [`delete`](exchange-contact/delete/)
+
+   Deletes Exchange contacts from the directory&nbsp; Will delete one or more contacts, specified by any of the following identity values: Name, Alias, Distinguished name, Canonical DN, Email Address, or GUID.&nbsp; The ```contact_identity``` variable is expected to be a [`list`](https://docs.ansible.com/ansible/latest/user_guide/playbooks_variables.html#list-variables) variable.  
+
+   This task is configured with the following variables:  
+   | Description            | Variable name            | Required | Where specified       |
+   | ---------------------- | ------------------------ |:--------:| --------------------- |
+   | Contact identifier     | ```contact_identity```   | yes      | extra_vars            |
+   | Exchange URI           | ```exchange_uri```       | yes      | role vars, extra_vars |
