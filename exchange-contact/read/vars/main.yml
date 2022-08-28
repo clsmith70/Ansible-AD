@@ -1,3 +1,2 @@
 ---
 exchange_uri: "http://exch-a.adlab.test.loc"
-contact_ou_path: "OU=Contacts,DC=adlab,DC=test,DC=loc"
