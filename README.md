@@ -16,7 +16,7 @@ This is the list of roles currently in this repository.&nbsp; The root main.yml 
 
 ### Role: exchange-contact
 
-This role is used to perform CRUD operations on Exchange Contact objects in Active Directory.&nbsp; It is designed for use in hybrid Exchange environments.
+This role is used to perform CRUD operations on Exchange Contact objects in Active Directory.&nbsp; It is designed for use in hybrid Exchange environments.&nbsp; These tasks can be extended to include other parameters, like CustomAttribute1-14 for example, to meet any organizational needs or standards.
 
 - ### Task: [`create`](exchange-contact/create/)
 
@@ -41,5 +41,7 @@ This role is used to perform CRUD operations on Exchange Contact objects in Acti
    | Contact identifier     | ```contact_identity```   | yes      | extra_vars            |
    | Exchange URI           | ```exchange_uri```       | yes      | role vars, extra_vars |
    | Recipient email address| ```recipient_address```  | yes      | extra_vars            |
-   | Email host address     | ```smtp_host_name```     | yes      | role vars, extra_vars |
-   | Email host port        | ```smtp_host_port```     | yes      | role vars, extra_vars |
+
+- ### Task: update
+
+   Due to the complexity of covering multiple scenarios, the update task is being omitted.&nbsp; Updates should be left to administrators or be handled as a delete/recreate operation.
