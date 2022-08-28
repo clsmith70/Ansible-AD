@@ -1,0 +1,3 @@
+- name: Create distribution group
+  import_tasks: create_distribution_group.yml
+  
