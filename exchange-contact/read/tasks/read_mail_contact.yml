@@ -22,7 +22,8 @@
 - name: Send report
   community.general.sendgrid:
     api_key: "{{ SENDGRID_API_KEY }}"
-    to_addresses: "{{ recipient_email }}"
+    to_addresses: 
+      - "{{ recipient_email }}"
     from_address: "{{ from_address }}"
     from_name: "{{ from_name }}"
     subject: "Job {{ tower_job_id }}: Contact Query Report"
