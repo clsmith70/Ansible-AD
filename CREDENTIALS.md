@@ -37,18 +37,15 @@ Some role tasks send email to recipients and will require the creation of the fo
 
 ---
 
-## **Name**: Microsoft 365  
+## **Name**: Sendgrid API Key  
 
 **Input Configuration**:
   
    ```yaml
    fields:
-     - id: userprincipalname
+     - id: api_key
        type: string
-       label: Microsoft 365 UPN
-     - id: password
-       type: string
-       label: M365 User Password
+       label: Sendgrid API Key
        secret: true
    ```
 
@@ -56,8 +53,7 @@ Some role tasks send email to recipients and will require the creation of the fo
 
    ```yaml
    extra_vars:
-     M365_PASSWORD: '{{ password }}'
-     M365_UPN: '{{ userprincipalname }}'
+     SENDGRID_API_KEY: '{{ api_key }}'
    ```
 
 ---
