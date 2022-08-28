@@ -20,17 +20,14 @@
   delegate_to: 127.0.0.1
 
 - name: Send report
-  community.general.mail:
+  community.general.sendgrid:
     host: "{{ smtp_host_name }}"
     port: "{{ smtp_host_port }}"
-    username: "{{ M365_UPN }}"
-    password: "{{ M365_PASSWORD }}"
-    to:
-      - "{{ item }}"
-    from: "{{ M365_UPN }}"
+    api_key: "{{ M365_PASSWORD }}"
+    to_addresses: "{{ recipient_email }}"
+    from_address: "{{ from_address }}"
+    from_name: "{{ from_name }}"
     subject: "Job {{ tower_job_id }}: Contact Query Report"
     body: "{{ lookup('file', '/tmp/{{ tower_job_id }}.html') }}"
-    subtype: html
-    secure: starttls
-  loop: "{{ recipient_email | split('\n') }}"
+    html_body: true
   delegate_to: 127.0.0.1
