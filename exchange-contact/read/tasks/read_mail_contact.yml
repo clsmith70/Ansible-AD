@@ -30,7 +30,7 @@
     from: "{{ M365_UPN }}"
     subject: "Job {{ tower_job_id }}: Contact Query Report"
     body: "{{ lookup('file', '/tmp/{{ tower_job_id }}.html') }}"
-    subtype: HTML
+    subtype: html
     secure: starttls
   loop: "{{ recipient_email | split('\n') }}"
   delegate_to: 127.0.0.1
