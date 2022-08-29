@@ -3,7 +3,7 @@
     script: |
       Write-Verbose -Message "Update the user"
       $string = "{{ attribute }}='{{ value }}'"
-      Write-Output "Set-ADUser -Add @{ $string }"
+      Set-ADUser -Identity {{ sam_account_name }} -Add @{ $string }
   register: script_output
 
 - name: Display result
