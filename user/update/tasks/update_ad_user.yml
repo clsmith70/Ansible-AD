@@ -1,0 +1,10 @@
+- name: Update AD User
+  ansible.windows.win_powershell:
+    script: |
+      Write-Verbose -Message "Create user update splat"
+      Write-Output -InputObject "{{ parameters }}"
+  register: script_output
+
+- name: Display result
+  debug:
+    msg: "{{ script_output.output }}"
