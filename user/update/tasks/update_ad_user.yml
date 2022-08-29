@@ -3,7 +3,7 @@
     script: |
       Write-Verbose -Message "Create user update splat"
       $data = "{{ parameters }}" | ConvertFrom-Json
-      Write-Output $data
+      Write-Output "$($data[0].Name) = $($data[0].Value)"
   register: script_output
 
 - name: Display result
