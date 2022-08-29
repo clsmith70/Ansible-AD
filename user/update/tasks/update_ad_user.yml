@@ -5,7 +5,7 @@
       $data = "{{ parameters }}" | ConvertFrom-Json
       $userInfo = @{}
       $data | ForEach-Object { $userInfo += "$_.Name = $_.Value" }
-      Write-Output "$userInfo
+      Write-Output $userInfo
   register: script_output
 
 - name: Display result
