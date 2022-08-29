@@ -1,0 +1,3 @@
+- name: Update user attribute(s)
+  import_tasks: update_ad_user.yml
+  
