@@ -1,9 +1,8 @@
 - name: Update AD User
   ansible.windows.win_powershell:
     script: |
-      Write-Verbose -Message "Create user update splat"
-      $data = "{{ parameters }}" | ConvertFrom-Json
-      Write-Output @data
+      Write-Verbose -Message "Update the user"
+      Write-Output "-{{ attribute }} {{ value }}"
   register: script_output
 
 - name: Display result
