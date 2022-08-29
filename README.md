@@ -14,7 +14,7 @@ View information about custom [`Credential`](CREDENTIALS.md) types that are used
 
 This is the list of roles currently in this repository.&nbsp; The root main.yml file in each one requires one parameter - ```role_name```.
 
-### Role: exchange-contact
+## Role: exchange-contact
 
 This role is used to perform CRUD operations on Exchange Contact objects in Active Directory.&nbsp; It is designed for use in hybrid Exchange environments.&nbsp; These tasks can be extended to include other parameters, like CustomAttribute1-14 for example, to meet any organizational needs or standards.
 
@@ -54,4 +54,24 @@ This role is used to perform CRUD operations on Exchange Contact objects in Acti
    | Description            | Variable name            | Required | Where specified       |
    | ---------------------- | ------------------------ |:--------:| --------------------- |
    | Contact identifier     | ```contact_identity```   | yes      | extra_vars            |
+   | Exchange URI           | ```exchange_uri```       | yes      | role vars, extra_vars |
+
+---
+---
+
+## Role: exchange-distribution-group
+
+This role is used to perform CRUD operations on Exchange Distribution Groups.&nbsp; It is designed for use in hybrid Exchange environments.  
+
+- ### Task: [`create`](exchange-distribution-group/create/)
+
+  Creates a new Exchange distribution group.  
+
+   This task is configured with the following variables:  
+   | Description            | Variable name            | Required | Where specified       |
+   | ---------------------- | ------------------------ |:--------:| --------------------- |
+   | Group SamAccountName   | ```sam_account_name```   | yes      | extra_vars            |
+   | Display Name           | ```display_name```       | yes      | extra_vars            |
+   | Primary SMTP Address   | ```email_address```      | yes      | extra_vars            |
+   | Group OU Path          | ```group_ou_path```      | yes      | role vars, extra_vars |
    | Exchange URI           | ```exchange_uri```       | yes      | role vars, extra_vars |
