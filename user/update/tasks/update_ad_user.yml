@@ -2,8 +2,7 @@
   ansible.windows.win_powershell:
     script: |
       Write-Verbose -Message "Update the user"
-      $string = "{{ attribute }}='{{ value }}'"
-      Set-ADUser -Identity {{ sam_account_name }} -Add @{ $string }
+      Set-ADUser -Identity {{ sam_account_name }} -Add @{ {{ attribute }}='{{ value }}' }
   register: script_output
 
 - name: Display result
