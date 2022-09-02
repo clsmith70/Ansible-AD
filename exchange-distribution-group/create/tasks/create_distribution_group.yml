@@ -6,7 +6,7 @@
       $password = ConvertTo-SecureString -String "{{ AD_PASSWORD }}" -AsPlainText -Force
       $credential = New-Object -TypeName System.Management.Automation.PSCredential("{{ AD_USERNAME }}", $password)
       $hx = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri "{{ exchange_uri }}" -Name HybridServer -Credential $credential
-      Import-PSSession -Session $hx | Out-Null
+      Import-PSSession -Session $hx -WarningAction SilentlyContinue | Out-Null
 
       $groupData = @{
         SamAccountName = "{{ sam_account_name }}"
@@ -15,7 +15,6 @@
         DisplayName = "{{ display_name }}"
         PrimarySmtpAddress = "{{ email_address }}"
         OrganizationalUnit = "{{ group_ou_path }}"
-        Description = "{{ description }}"
         Type = "{{ group_type }}"
       }
 
