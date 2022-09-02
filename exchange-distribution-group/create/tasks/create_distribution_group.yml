@@ -29,5 +29,5 @@
   register: distribution_group_detail
 
 - set_stats:
-  data:
-    distribution_group: "{{ distribution_group_detail.output }}"
+    data:
+      distribution_group: "{{ distribution_group_detail.output }}"
