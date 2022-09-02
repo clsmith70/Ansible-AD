@@ -1,0 +1,7 @@
+- name: Get distribution group information
+  import_tasks: get_distribution_group.yml
+  when: "role_action == 'workflow'"
+
+- name: Report distribution group information
+  import_tasks: get_distribution_group_report.yml
+  when: "role_action == 'report'"
