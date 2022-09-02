@@ -15,6 +15,8 @@
         DisplayName = "{{ display_name }}"
         PrimarySmtpAddress = "{{ email_address }}"
         OrganizationalUnit = "{{ group_ou_path }}"
+        Description = "{{ description }}"
+        Type = "{{ group_type }}"
       }
 
       Write-Verbose -Message "Create the distribution group"
