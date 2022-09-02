@@ -20,5 +20,5 @@ This role is used to perform CRUD operations on Exchange Distribution Groups.&nb
    | Group types            | ```group_type```         | yes      | extra_vars            |
    | Group OU Path          | ```group_ou_path```      | yes      | role vars, extra_vars |
    | Exchange URI           | ```exchange_uri```       | yes      | role vars, extra_vars |
-   
-   [`Return`](/README.md) to main
+
+[`Return`](/README.md) to main
