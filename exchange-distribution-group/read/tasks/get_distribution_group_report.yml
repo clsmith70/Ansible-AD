@@ -41,7 +41,7 @@
       - "{{ recipient_email }}"
     from_address: "{{ from_address }}"
     from_name: "{{ from_name }}"
-    subject: "Job {{ tower_job_id }}: Contact Query Report"
+    subject: "Job {{ tower_job_id }}: Group Query Report"
     body: "{{ lookup('file', '/tmp/{{ tower_job_id }}.html') }}"
     html_body: true
   delegate_to: 127.0.0.1
