@@ -29,6 +29,8 @@ This role is used to perform CRUD operations on Exchange Contact objects in Acti
    | Contact identifier     | ```contact_identity```   | yes      | extra_vars            |
    | Exchange URI           | ```exchange_uri```       | yes      | role vars, extra_vars |
    | Recipient email address| ```recipient_address```  | yes      | extra_vars            |
+   | Sender Email Address   | ```from_address```       | yes      | role vars, extra_vars |
+   | Sender Display Name    | ```from_name```          | yes      | role vars, extra_vars |
 
 - ### Task: update
 
