@@ -1,0 +1,3 @@
+- name: Create standard distribution group
+  import_tasks: create_distribution_group.yml
+  when: "group_type == 'distribution'"

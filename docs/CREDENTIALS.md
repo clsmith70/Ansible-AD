@@ -2,7 +2,7 @@
 
  To use any of the Ansible-AD roles in this repository, you will need to create a new credential type to facilitate authentication.
 
-[`Return`](README.md) to main
+[`Return`](/README.md) to main
 
 ---
 
@@ -58,4 +58,4 @@ Some role tasks send email to recipients and will require the creation of the fo
 
 ---
 
-[`Return`](README.md) to main
+[`Return`](/README.md) to main
