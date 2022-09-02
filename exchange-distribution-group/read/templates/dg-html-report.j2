@@ -42,7 +42,7 @@
                 </tr>
             </thead>
             <tbody>
-            {% for result in distribution_group_detail.output %}
+            {% for item in distribution_group_detail.output %}
                 <tr>
                     <td>{{ item.DisplayName }}</td>
                     <td>{{ item.Alias }}</td>
@@ -63,7 +63,7 @@
                 </tr>
             </thead>
             <tbody>
-            {% for result in distribution_group_members.output %}
+            {% for item in distribution_group_members.output %}
                 <tr>
                     <td>{{ item.DisplayName }}</td>
                     <td>{{ item.Alias }}</td>
