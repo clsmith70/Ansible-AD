@@ -16,7 +16,6 @@ This role is used to perform CRUD operations on Exchange Distribution Groups.&nb
    | Alias / SamAccountName | ```sam_account_name```   | yes      | extra_vars            |
    | Display Name           | ```display_name```       | yes      | extra_vars            |
    | Primary SMTP Address   | ```email_address```      | yes      | extra_vars            |
-   | Description            | ```description```        | yes      | extra_vars            |
    | Group types            | ```group_type```         | yes      | extra_vars            |
    | Group OU Path          | ```group_ou_path```      | yes      | role vars, extra_vars |
    | Exchange URI           | ```exchange_uri```       | yes      | role vars, extra_vars |
