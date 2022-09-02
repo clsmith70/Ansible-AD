@@ -1,12 +1,12 @@
 # Exchange Distribution Group tasks
 
-[`Return`](README.md) to main
+[`Return`](/README.md) to main
 
 ## Description
 
 This role is used to perform CRUD operations on Exchange Distribution Groups.&nbsp; It is designed for use in hybrid Exchange environments.  
 
-- ### Task: [`create`](exchange-distribution-group/create/)
+- ### Task: [`create`](/exchange-distribution-group/create/)
 
   Creates a new Exchange distribution group.  
 
@@ -19,4 +19,4 @@ This role is used to perform CRUD operations on Exchange Distribution Groups.&nb
    | Group OU Path          | ```group_ou_path```      | yes      | role vars, extra_vars |
    | Exchange URI           | ```exchange_uri```       | yes      | role vars, extra_vars |
 
-   [`Return`](README.md) to main
+   [`Return`](/README.md) to main
