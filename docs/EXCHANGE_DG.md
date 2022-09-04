@@ -12,16 +12,16 @@ This role is used to perform CRUD operations on Exchange Distribution Groups.&nb
 
   &nbsp;
 
-  - #### variables
-
-    | Description            | Variable name            | Required | Where specified       |
-    | ---------------------- | ------------------------ |:--------:| --------------------- |
-    | Alias / SamAccountName | ```sam_account_name```   | yes      | extra_vars            |
-    | Display Name           | ```display_name```       | yes      | extra_vars            |
-    | Primary SMTP Address   | ```email_address```      | yes      | extra_vars            |
-    | Group types            | ```group_type```         | yes      | extra_vars            |
-    | Group OU Path          | ```group_ou_path```      | yes      | role vars, extra_vars |
-    | Exchange URI           | ```exchange_uri```       | yes      | role vars, extra_vars |
+  > #### create role variables
+  >
+  >  | Description            | Variable name            | Required | Where specified       |
+  >  | ---------------------- | ------------------------ |:--------:| --------------------- |
+  >  | Alias / SamAccountName | ```sam_account_name```   | yes      | extra_vars            |
+  >  | Display Name           | ```display_name```       | yes      | extra_vars            |
+  >  | Primary SMTP Address   | ```email_address```      | yes      | extra_vars            |
+  >  | Group types            | ```group_type```         | yes      | extra_vars            |
+  >  | Group OU Path          | ```group_ou_path```      | yes      | role vars, extra_vars |
+  >  | Exchange URI           | ```exchange_uri```       | yes      | role vars, extra_vars |
   &nbsp;
 
 - ### ```role_name```: [`read`](/exchange-distribution-group/read/)
@@ -30,24 +30,24 @@ This role is used to perform CRUD operations on Exchange Distribution Groups.&nb
 
   &nbsp;
 
-  - #### variables  when ```role_action``` == '```workflow```'
+  > #### variables when ```role_action``` == '```workflow```'
+  >
+  >  | Description            | Variable name                    | Required | Where specified       |
+  >  | ---------------------- | -------------------------------- |:--------:| --------------------- |
+  >  | Group Identity         | ```distribution_group_identity```| yes      | extra_vars            |
+  >  | Exchange URI           | ```exchange_uri```               | yes      | role vars, extra_vars |
+  &nbsp;
 
-    | Description            | Variable name                    | Required | Where specified       |
-    | ---------------------- | -------------------------------- |:--------:| --------------------- |
-    | Group Identity         | ```distribution_group_identity```| yes      | extra_vars            |
-    | Exchange URI           | ```exchange_uri```               | yes      | role vars, extra_vars |
-    &nbsp;
-
-  - #### variables when ```role_action``` == '```report```'
-
-    | Description            | Variable name                    | Required | Where specified       |
-    | ---------------------- | -------------------------------- |:--------:| --------------------- |
-    | Group Identity         | ```distribution_group_identity```| yes      | extra_vars            |
-    | Exchange URI           | ```exchange_uri```               | yes      | role vars, extra_vars |
-    | Recipient email address| ```recipient_address```          | yes      | extra_vars            |
-    | Sender Email Address   | ```from_address```               | yes      | role vars, extra_vars |
-    | Sender Display Name    | ```from_name```                  | yes      | role vars, extra_vars |
-    &nbsp;
+  > #### variables when ```role_action``` == '```report```'
+  >
+  >  | Description            | Variable name                    | Required | Where specified       |
+  >  | ---------------------- | -------------------------------- |:--------:| --------------------- |
+  >  | Group Identity         | ```distribution_group_identity```| yes      | extra_vars            |
+  >  | Exchange URI           | ```exchange_uri```               | yes      | role vars, extra_vars |
+  >  | Recipient email address| ```recipient_address```          | yes      | extra_vars            |
+  >  | Sender Email Address   | ```from_address```               | yes      | role vars, extra_vars |
+  >  | Sender Display Name    | ```from_name```                  | yes      | role vars, extra_vars |
+  &nbsp;
 
 - ### ```role_name```: [`update`](/exchange-distribution-group/update/)
 
@@ -55,31 +55,45 @@ This role is used to perform CRUD operations on Exchange Distribution Groups.&nb
 
   &nbsp;
 
-  - #### variables when ```role_action``` == '```set_display_name```'
-
-    | Description            | Variable name                    | Required | Where specified       |
-    | ---------------------- | -------------------------------- |:--------:| --------------------- |
-    | Group Identity         | ```distribution_group_identity```| yes      | extra_vars            |
-    | Display Name           | ```display_name```               | yes      | extra_vars            |
-    | Exchange URI           | ```exchange_uri```               | yes      | role vars, extra_vars |
+    > #### variables when ```role_action``` == '```set_display_name```'
+    >
+    >  | Description            | Variable name                    | Required | Where specified       |
+    >  | ---------------------- | -------------------------------- |:--------:| --------------------- |
+    >  | Group Identity         | ```distribution_group_identity```| yes      | extra_vars            |
+    >  | Display Name           | ```display_name```               | yes      | extra_vars            |
+    >  | Exchange URI           | ```exchange_uri```               | yes      | role vars, extra_vars |
     &nbsp;
 
-  - #### variables when ```role_action``` == '```add_member```'
-
-    | Description            | Variable name                    | Required | Where specified       |
-    | ---------------------- | -------------------------------- |:--------:| --------------------- |
-    | Group Identity         | ```distribution_group_identity```| yes      | extra_vars            |
-    | User(s) to add         | ```add_member```                   | yes      | extra_vars            |
-    | Exchange URI           | ```exchange_uri```               | yes      | role vars, extra_vars |
+    > #### variables when ```role_action``` == '```add_member```'
+    >
+    >  | Description            | Variable name                    | Required | Where specified       |
+    >  | ---------------------- | -------------------------------- |:--------:| --------------------- |
+    >  | Group Identity         | ```distribution_group_identity```| yes      | extra_vars            |
+    >  | User(s) to add         | ```add_member```                   | yes      | extra_vars            |
+    >  | Exchange URI           | ```exchange_uri```               | yes      | role vars, extra_vars |
     &nbsp;
 
-  - #### variables when ```role_action``` == '```remove_member```'
+    > #### variables when ```role_action``` == '```remove_member```'
+    >
+    >  | Description            | Variable name                    | Required | Where specified       |
+    >  | ---------------------- | -------------------------------- |:--------:| --------------------- |
+    >  | Group Identity         | ```distribution_group_identity```| yes      | extra_vars            |
+    >  | User(s) to remove      | ```remove_member```                | yes      | extra_vars            |
+    >  | Exchange URI           | ```exchange_uri```               | yes      | role vars, extra_vars |
+    &nbsp;
 
-    | Description            | Variable name                    | Required | Where specified       |
-    | ---------------------- | -------------------------------- |:--------:| --------------------- |
-    | Group Identity         | ```distribution_group_identity```| yes      | extra_vars            |
-    | User(s) to remove      | ```remove_member```                | yes      | extra_vars            |
-    | Exchange URI           | ```exchange_uri```               | yes      | role vars, extra_vars |
+- ### ```role_name```: [`delete`](/exchange-distribution-group/delete/)
+
+  Removes a distribution group from Exchange and Active Directory.
+
   &nbsp;
+
+    > #### delete role variables
+    >
+    >  | Description            | Variable name                    | Required | Where specified       |
+    >  | ---------------------- | -------------------------------- |:--------:| --------------------- |
+    >  | Group Identity         | ```distribution_group_identity```| yes      | extra_vars            |
+    >  | Exchange URI           | ```exchange_uri```               | yes      | role vars, extra_vars |
+    &nbsp;
 
 [`Return`](/README.md) to main
