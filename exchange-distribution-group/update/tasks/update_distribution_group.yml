@@ -9,4 +9,4 @@
       Import-PSSession -Session $hx -WarningAction SilentlyContinue | Out-Null
 
       Write-Verbose -Message "Update distribution group display name"
-      Set-DistributionGroup -Identity {{ distribution_group_identity }} -DisplayName {{ display_name }}
+      Set-DistributionGroup -Identity {{ distribution_group_identity }} -DisplayName '{{ display_name }}'
