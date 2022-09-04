@@ -11,4 +11,3 @@
       Write-Verbose -Message "Update distribution group membership"
       $members = if ("{{ add_member }}" -match "`n") { -split "{{ add_member }}" } else { "{{ add_member }}" }
       $members | ForEach-Object { Remove-DistributionGroupMember -Identity '{{ distribution_group_identity }}' -Member $_ }
-
