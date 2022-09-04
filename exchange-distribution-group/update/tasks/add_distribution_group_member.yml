@@ -1,0 +1,13 @@
+- name: Add distribution group member
+  no_log: true
+  ansible.windows.win_powershell:
+    script: |
+      Write-Verbose -Message "Establish connection to Exchange on-premises"
+      $password = ConvertTo-SecureString -String "{{ AD_PASSWORD }}" -AsPlainText -Force
+      $credential = New-Object -TypeName System.Management.Automation.PSCredential("{{ AD_USERNAME }}", $password)
+      $hx = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri "{{ exchange_uri }}" -Name HybridServer -Credential $credential
+      Import-PSSession -Session $hx -WarningAction SilentlyContinue | Out-Null
+
+      Write-Verbose -Message "Update distribution group membership"
+      Add-DistributionGroupMember -Identity {{ distribution_group_identity }} -Member {{ item }}
+  loop: "{{ add_member | split('\n') }}"
