@@ -1,4 +1,4 @@
-- name: Add distribution group member
+- name: Remove distribution group member
   no_log: false
   ansible.windows.win_powershell:
     script: |
