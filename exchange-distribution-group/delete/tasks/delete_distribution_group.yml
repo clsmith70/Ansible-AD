@@ -9,4 +9,4 @@
       Import-PSSession -Session $hx -WarningAction SilentlyContinue | Out-Null
 
       Write-Verbose -Message "Remove distribution group"
-      Remove-DistributionGroup -Identity '{{ distribution_grouo_identity }}' -Confirm:$false
+      Remove-DistributionGroup -Identity '{{ distribution_group_identity }}' -Confirm:$false
