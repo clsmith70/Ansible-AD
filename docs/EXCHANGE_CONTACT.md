@@ -12,15 +12,15 @@ This role is used to perform CRUD operations on Exchange Contact objects in Acti
 
   &nbsp;
 
-  - #### variables
-
-      | Description            | Variable name            | Required | Where specified       |
-      | ---------------------- | ------------------------ |:--------:| --------------------- |
-      | Contact First Name     | ```contact_first_name``` | yes      | extra_vars            |
-      | Contact Last Name      | ```contact_last_name```  | yes      | extra_vars            |
-      | External Email Address | ```contact_email```      | yes      | extra_vars            |
-      | Exchange URI           | ```exchange_uri```       | yes      | role vars, extra_vars |
-      | Contact OU Path        | ```contact_ou_path```    | yes      | role vars, extra_vars |
+  > #### create role variables
+  >
+  >    | Description            | Variable name            | Required | Where specified       |
+  >    | ---------------------- | ------------------------ |:--------:| --------------------- |
+  >    | Contact First Name     | ```contact_first_name``` | yes      | extra_vars            |
+  >    | Contact Last Name      | ```contact_last_name```  | yes      | extra_vars            |
+  >    | External Email Address | ```contact_email```      | yes      | extra_vars            |
+  >    | Exchange URI           | ```exchange_uri```       | yes      | role vars, extra_vars |
+  >    | Contact OU Path        | ```contact_ou_path```    | yes      | role vars, extra_vars |
   &nbsp;
 
 - ### ```role_name```: [`read`](/exchange-contact/read/)
@@ -29,20 +29,23 @@ This role is used to perform CRUD operations on Exchange Contact objects in Acti
 
   &nbsp;
 
-  - #### variables
-
-      | Description            | Variable name            | Required | Where specified       |
-      | ---------------------- | ------------------------ |:--------:| --------------------- |
-      | Contact identifier     | ```contact_identity```   | yes      | extra_vars            |
-      | Exchange URI           | ```exchange_uri```       | yes      | role vars, extra_vars |
-      | Recipient email address| ```recipient_address```  | yes      | extra_vars            |
-      | Sender Email Address   | ```from_address```       | yes      | role vars, extra_vars |
-      | Sender Display Name    | ```from_name```          | yes      | role vars, extra_vars |
+  > #### read role variables
+  >
+  >    | Description            | Variable name            | Required | Where specified       |
+  >    | ---------------------- | ------------------------ |:--------:| --------------------- |
+  >    | Contact identifier     | ```contact_identity```   | yes      | extra_vars            |
+  >    | Exchange URI           | ```exchange_uri```       | yes      | role vars, extra_vars |
+  >    | Recipient email address| ```recipient_address```  | yes      | extra_vars            |
+  >    | Sender Email Address   | ```from_address```       | yes      | role vars, extra_vars |
+  >    | Sender Display Name    | ```from_name```          | yes      | role vars, extra_vars |
   &nbsp;
 
 - ### ```role_name```: update
 
    Due to the complexity of covering multiple scenarios, the update task is being omitted.&nbsp; Updates should be left to administrators or be handled as a delete/recreate operation.
+&nbsp;
+
+&nbsp;
 
 - ### ```role_name```: [`delete`](/exchange-contact/delete/)
 
@@ -50,12 +53,12 @@ This role is used to perform CRUD operations on Exchange Contact objects in Acti
 
   &nbsp;
 
-  - #### variables
-
-      | Description            | Variable name            | Required | Where specified       |
-      | ---------------------- | ------------------------ |:--------:| --------------------- |
-      | Contact identifier     | ```contact_identity```   | yes      | extra_vars            |
-      | Exchange URI           | ```exchange_uri```       | yes      | role vars, extra_vars |
+  > #### delete role variables
+  >
+  >    | Description            | Variable name            | Required | Where specified       |
+  >    | ---------------------- | ------------------------ |:--------:| --------------------- |
+  >    | Contact identifier     | ```contact_identity```   | yes      | extra_vars            |
+  >    | Exchange URI           | ```exchange_uri```       | yes      | role vars, extra_vars |
   &nbsp;
 
    [`Return`](/README.md) to main
