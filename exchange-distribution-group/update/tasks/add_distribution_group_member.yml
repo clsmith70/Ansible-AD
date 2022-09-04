@@ -1,5 +1,5 @@
 - name: Add distribution group member
-  no_log: true
+  no_log: false
   ansible.windows.win_powershell:
     script: |
       Write-Verbose -Message "Establish connection to Exchange on-premises"
