@@ -9,5 +9,5 @@
       Import-PSSession -Session $hx -WarningAction SilentlyContinue | Out-Null
 
       Write-Verbose -Message "Update distribution group membership"
-      $members = if ("{{ remove_member }}" -match "`n") { -split "{{ add_member }}" } else { "{{ add_member }}" }
+      $members = if ("{{ remove_member }}" -match "`n") { -split "{{ remove_member }}" } else { "{{ remove_member }}" }
       $members | ForEach-Object { Remove-DistributionGroupMember -Identity '{{ distribution_group_identity }}' -Member $_ }
