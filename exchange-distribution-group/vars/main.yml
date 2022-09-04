@@ -1,0 +1,3 @@
+---
+exchange_uri: "http://exch-a.adlab.test.loc"
+group_ou_path: "OU=Groups,DC=adlab,DC=test,DC=loc"

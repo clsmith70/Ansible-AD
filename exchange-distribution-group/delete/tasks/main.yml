@@ -1,0 +1,3 @@
+- name: Delete a distribution group
+  import_tasks: delete_distribution_group.yml
+  

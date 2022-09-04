@@ -1,0 +1,7 @@
+- name: Update user attribute
+  import_tasks: update_ad_attributes_v1.yml
+  when: attribute is defined and value is defined
+
+- name: Update user attributess
+  import_tasks: update_ad_attributes_v2.yml
+  when: attribute_string is defined

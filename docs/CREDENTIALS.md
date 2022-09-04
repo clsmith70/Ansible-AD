@@ -2,7 +2,7 @@
 
  To use any of the Ansible-AD roles in this repository, you will need to create a new credential type to facilitate authentication.
 
-[`Return`](README.md) to main
+[`Return`](/README.md) to main
 
 ---
 
@@ -37,7 +37,7 @@ Some role tasks send email to recipients and will require the creation of the fo
 
 ---
 
-## **Name**: Sendgrid API Key  
+## **Name**: API Key  
 
 **Input Configuration**:
   
@@ -45,7 +45,7 @@ Some role tasks send email to recipients and will require the creation of the fo
    fields:
      - id: api_key
        type: string
-       label: Sendgrid API Key
+       label: API Key
        secret: true
    ```
 
@@ -53,9 +53,9 @@ Some role tasks send email to recipients and will require the creation of the fo
 
    ```yaml
    extra_vars:
-     SENDGRID_API_KEY: '{{ api_key }}'
+     API_KEY: '{{ api_key }}'
    ```
 
 ---
 
-[`Return`](README.md) to main
+[`Return`](/README.md) to main
