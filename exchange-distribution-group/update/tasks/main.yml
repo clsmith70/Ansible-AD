@@ -1,0 +1,11 @@
+- name: Update distribution group display name
+  import_tasks: update_distribution_group.yml
+  when: "role_action == 'set_display_name'"
+
+- name: Add distribution group member
+  import_tasks: add_distribution_group_member.yml
+  when: "role_action == 'add_member'"
+
+- name: Remove distribution group member
+  import_tasks: remove_distribution_group_member.yml
+  when: "role_action == 'remove_member'"
