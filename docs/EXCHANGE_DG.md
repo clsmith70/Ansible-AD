@@ -71,7 +71,7 @@ This role is used to perform CRUD operations on Exchange Distribution Groups.&nb
    | Description            | Variable name                    | Required | Where specified       |
    | ---------------------- | -------------------------------- |:--------:| --------------------- |
    | Group Identity         | ```distribution_group_identity```| yes      | extra_vars            |
-   | User(s) to add         | ```add_user```                   | yes      | extra_vars            |
+   | User(s) to add         | ```add_member```                   | yes      | extra_vars            |
    | Exchange URI           | ```exchange_uri```               | yes      | role vars, extra_vars |
 
   &nbsp;
@@ -81,7 +81,7 @@ This role is used to perform CRUD operations on Exchange Distribution Groups.&nb
    | Description            | Variable name                    | Required | Where specified       |
    | ---------------------- | -------------------------------- |:--------:| --------------------- |
    | Group Identity         | ```distribution_group_identity```| yes      | extra_vars            |
-   | User(s) to remove      | ```remove_user```                | yes      | extra_vars            |
+   | User(s) to remove      | ```remove_member```                | yes      | extra_vars            |
    | Exchange URI           | ```exchange_uri```               | yes      | role vars, extra_vars |
   &nbsp;
 
