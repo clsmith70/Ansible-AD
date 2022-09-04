@@ -9,4 +9,4 @@
       Import-PSSession -Session $hx -WarningAction SilentlyContinue | Out-Null
 
       Write-Verbose -Message "Update distribution group membership"
-      {{ add_member | split('\n') | list }} | ForEach-Object { Add-DistributionGroupMember -Identity '{{ distribution_group_identity }}' -Member $_ }
+      {{ add_member }} | ConvertFrom-Json | ForEach-Object { Add-DistributionGroupMember -Identity '{{ distribution_group_identity }}' -Member $_ }
