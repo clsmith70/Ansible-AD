@@ -1,0 +1,7 @@
+- name: Rename AD user
+  ansible.windows.win_powershell:
+    script: |
+      Write-Verbose -Message "Rename the user"
+      Get-ADUser -Identity {{ user_identity }} | Rename-ADObject -NewName {{ new_display_name }} -WhatIf
+      Set-ADUser -Identity {{ user_identity }} -SamAccountName {{ new_identity }} -Surname {{ new_surname }} -DisplayName {{ new_display_name }} -WhatIf
+      Get-ADUser -Identity {{ new_identity }} -Properties DisplayName | Select-Object Name,SamAccountName,DisplayName,DistinguishedName
