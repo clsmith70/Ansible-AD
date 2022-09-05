@@ -1,3 +1,7 @@
 - name: Update user attribute
   import_tasks: update_ad_attribute.yml
-  when: attribute_string is defined
+  when: "role_task == 'update_attribute'"
+
+- name: Rename user
+  import_tasks: rename_ad_user.yml
+  when: "role_task == 'rename_user'"
