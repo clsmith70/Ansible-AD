@@ -23,7 +23,7 @@
 
       Write-Verbose -Message "Return new group"
       if (Get-DistributionGroup -Identity $groupData.SamAccountName) {
-        Write-Output (Get-DistributionGroup -Identity $groupData.SamAccountName | Select-Object -Property DisplayName,Alias,PrimarySmtpAddress,GroupType)
+        Write-Output (Get-DistributionGroup -Identity $groupData.SamAccountName | Select-Object -Property DisplayName,Alias,PrimarySmtpAddress,@{n='Type';e={if ($_.GroupType -match 'SecurityEnabled') { "Security" } else { "Distribution" }}}
       }
   register: distribution_group_detail
 
