@@ -1,0 +1,7 @@
+- name: Create user (middle initial)
+  import_tasks: new_ad_user_initials.yml
+  when: initials is defined
+
+- name: Creat user (no initial)
+  import_tasks: new_ad_user_no_initials.yml
+  when: initials is not defined
