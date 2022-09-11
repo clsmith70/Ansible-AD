@@ -1,0 +1,33 @@
+- name: Create AD User
+  no_log: true
+  ansible.windows.win_powershell:
+    script: |
+      Write-Verbose -Message "Create user variables"
+
+      $sam_account_name = "$($fn.ToLower()[0])$($init.ToLower()[0]$($ln.ToLower()))
+      $user_principal_name = "$sam_account_name@{{ email_domain }}"
+      $password = "{{ lookup('ansible.builtin.password', '/dev/null chars=ascii_letters,digits,punctuation length=32') }}"
+
+      Write-Verbose -Message "Create user splat"
+      $userData = @{
+        Department = '{{ department }}'
+        Path = '{{ service_user_ou_path }}'
+        SamAccountName = $sam_account_name
+        DisplayName = "{{ display_name }}"
+        Name = "{{ display_name }}"
+        UserPrincipalName = $user_principal_name
+        AccountPassword = (ConvertTo-SecureString -AsPlainText -Force -String $password)
+        CannotChangePassword = $true
+        PasswordNeverExpires = $true
+        ChangePasswordAtLogon = $false
+      }
+ 
+      Write-Verbose -Message "Create user object"
+      New-ADUser @userData | Out-Null
+
+      Write-Verbose "Return the new user data"
+      Write-Output -InputObject $userData
+  register: ad_user_data
+
+- set_stats:
+    new_user_info: ad_user_data
