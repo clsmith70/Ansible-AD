@@ -8,11 +8,11 @@ This role is used to perform CRUD operations on Active Directory user objects.&n
 
 - ### ```role_name```: [`create`](/user/create/)
 
-   Creates a new Active Directory user object.&nbsp; Do not include the at symbol (@) in the ```email_domain``` or ```remote_routing_domain``` variables, it is included in the playbooks.
+   Creates a new Active Directory user object depending on which ```role_action``` is defined.&nbsp; The valid values for ```role_action``` are ```named_user``` and ```service_user```.&nbsp; The ```service_user``` action creates an AD User object for use with applications that do not support the more secure group managed service account.
 
   &nbsp;
 
-  > #### create role variables
+  > #### variables when ```role_action``` == '```named_user```'
   >
   >    | Description            | Variable name                 | Required | Where specified       |
   >    | ---------------------- | ----------------------------- |:--------:| --------------------- |
@@ -22,9 +22,21 @@ This role is used to perform CRUD operations on Active Directory user objects.&n
   >    | Last Name              | ```last_name```               | yes      | extra_vars            |
   >    | Department             | ```department```              | yes      | extra_vars            |
   >    | Job Title              | ```job_title```               | yes      | extra_vars            |
+  >    | User Email to Notify   | ```notification_address```    | yes      | extra_vars            |
   >    | Email Suffix           | ```email_domain```            | yes      | role vars, extra_vars |
   >    | Remote Routing Suffix  | ```remote_routing_domain```   | yes      | role vars, extra_vars |
   >    | Department User OU Path| ```department_user_ou_path``` | yes      | role vars, extra_vars |
+  &nbsp;
+
+  > #### variables when ```role_action``` == '```service_user```'
+  >
+  >    | Description            | Variable name              | Required | Where specified       |
+  >    | ---------------------- | -------------------------- |:--------:| --------------------- |
+  >    | Application Name       | ```display_name```         | yes      | extra_vars            |
+  >    | Department             | ```department```           | yes      | extra_vars            |
+  >    | Internal Suffix        | ```email_domain```         | yes      | role vars, extra_vars |
+  >    | Service User OU Path   | ```service_user_ou_path``` | yes      | role vars, extra_vars |
+  >    | User Email to Notify   | ```notification_address``` | yes      | extra_vars            |
   &nbsp;
 
 - ### ```role_name```: [`read`](/user/read/)
