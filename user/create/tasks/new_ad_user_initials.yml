@@ -1,0 +1,39 @@
+- name: Create AD User
+  no_log: true
+  ansible.windows.win_powershell:
+    script: |
+      Write-Verbose -Message "Create user variables"
+      $fn = '{{ first_name }}'
+      $init = '{{ initials }}'
+      $ln = '{{ last_name }}'
+      $sam_account_name = "$($fn.ToLower()[0])$($init.ToLower()[0]$($ln.ToLower()))
+      $upn_email = "$sam_account_name@{{ email_domain }}"
+      $password = "{{ lookup('ansible.builtin.password', '/dev/null chars=ascii_letters,digits,punctuation length=14') }}"
+
+      Write-Verbose -Message "Create user splat"
+      $userData = @{
+        GivenName = $fn
+        Initials = $init
+        Surname = $ln
+        Title = '{{ job_title }}'
+        Department = '{{ department }}'
+        Path = '{{ department_user_ou_path }}'
+        SamAccountName = $sam_account_name
+        DisplayName = "$fn $ln"
+        Name = "$fn $ln"
+        EmployeeID = '{{ employee_id }}'
+        EmployeeNumber = '{{ employee_id }}'
+        UserPrincipalName = $upn_email
+        Password = (ConvertTo-SecureString -AsPlainText -Force -String $password)
+      }
+ 
+      Write-Verbose -Message "Create user object"
+      New-ADUser @userData | Out-Null
+
+      Write-Verbose "Return the new user data"
+      Write-Output -InputObject $userData
+  register: employee_data
+
+- set_stats:
+    new_user_info: employee_data
+  when: workflow is defined
