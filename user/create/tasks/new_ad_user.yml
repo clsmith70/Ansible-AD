@@ -6,8 +6,15 @@
       $fn = '{{ first_name }}'
       $init = '{{ initials }}'
       $ln = '{{ last_name }}'
-      $sam_account_name = "$($fn.ToLower()[0])$($init.ToLower()[0]$($ln.ToLower()))
-      $upn_email = "$sam_account_name@{{ email_domain }}"
+      $eid = '{{ employee_id }}'
+
+      if ($init) {
+        $sam_account_name = "$($fn.ToLower()[0])$($init.ToLower()[0]$($ln.ToLower()))"
+      } else {
+        $sam_account_name = "$($fn.ToLower()[0])$($ln.ToLower()))"
+      }
+      
+      $user_principal_name = "$sam_account_name@{{ email_domain }}"
       $password = "{{ lookup('ansible.builtin.password', '/dev/null chars=ascii_letters,digits,punctuation length=14') }}"
 
       Write-Verbose -Message "Create user splat"
@@ -21,10 +28,11 @@
         SamAccountName = $sam_account_name
         DisplayName = "$fn $ln"
         Name = "$fn $ln"
-        EmployeeID = '{{ employee_id }}'
-        EmployeeNumber = '{{ employee_id }}'
-        UserPrincipalName = $upn_email
-        Password = (ConvertTo-SecureString -AsPlainText -Force -String $password)
+        EmployeeID = $eid
+        EmployeeNumber = $eid
+        UserPrincipalName = $user_principal_name
+        AccountPassword = (ConvertTo-SecureString -AsPlainText -Force -String $password)
+        Enabled = $true
       }
  
       Write-Verbose -Message "Create user object"
@@ -32,8 +40,7 @@
 
       Write-Verbose "Return the new user data"
       Write-Output -InputObject $userData
-  register: employee_data
+  register: ad_user_data
 
 - set_stats:
-    new_user_info: employee_data
-  when: workflow is defined
+    new_user_info: ad_user_data
