@@ -1,8 +1,8 @@
-- name: Update AD User
+- name: Alter AD User Attribute(s)
   ansible.windows.win_powershell:
     script: |
       Write-Verbose -Message "Update the user"
-      Set-ADUser -Identity {{ sam_account_name }} -Add @{ {{ attribute_string }}' }
+      Set-ADUser -Identity {{ sam_account_name }} -Replace @{ {{ attribute_string }}' }
   register: script_output
 
 - name: Display result
