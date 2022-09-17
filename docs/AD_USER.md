@@ -43,6 +43,32 @@ This role is used to perform CRUD operations on Active Directory user objects.&n
 
 - ### ```role_name```: [`update`](/user/update/)
 
+  Updates a user object with values provided.&nbsp; The task that is run depends on the attribute being altered.&nbsp; Some attributes, like extensionAttribute1, are set using the Add, Remove, Replace and Clear PowerShell parameters.&nbsp; The task that is run is decided by the value of the ```role_action``` parameter.&nbsp; The valid values for ```role_action``` are ```add_attribute``` (can add or change), ```remove_attribute``` (clears attributes), and ```transfer_promote``` (sets title and/or department).
+
+  > #### variables when ```role_action``` == '```add_attribute```'
+  >
+  >    | Description            | Variable name              | Required | Where specified       |
+  >    | ---------------------- | -------------------------- |:--------:| --------------------- |
+  >    | User Id                | ```sam_account_name```     | yes      | extra_vars            |
+  >    | List of attributes     | ```attribute_setstring```  | yes      | extra_vars            |
+  >
+  >```attribute_setstring``` with one name/value pair: '```extensionAttribute12=value0```'  
+  >```attribute_setstring``` with mutiple name/value pairs: '```extensionAttribute1=value5;extensionAttribute4=value2```'
+
+  &nbsp;  
+
+  > #### variables when ```role_action``` == '```remove_attribute```'
+  >
+  >    | Description            | Variable name              | Required | Where specified       |
+  >    | ---------------------- | -------------------------- |:--------:| --------------------- |
+  >    | User Id                | ```sam_account_name```     | yes      | extra_vars            |
+  >    | List of attributes     | ```attribute_setstring```  | yes      | extra_vars            |
+  >
+  >```attribute_setstring``` with one attribute to clear: '```extensionAttribute12```'  
+  >```attribute_setstring``` with mutiple attributes to clear: '```extensionAttribute1,extensionAttribute4```'
+
+  &nbsp;
+
 - ### ```role_name```: [`delete`](/user/delete/)
 
 [`Return`](/README.md) to main
