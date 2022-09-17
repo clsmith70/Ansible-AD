@@ -1,0 +1,19 @@
+- name: Add AD User Attribute(s)
+  ansible.windows.win_powershell:
+    script: |
+      Write-Verbose -Message "Update the user"
+      Set-ADUser -Identity {{ sam_account_name }} -Replace @{ {{ attribute_string }} }
+  register: script_output
+  when: "role_action == 'add_attribute'"
+
+- name: Remove AD User Attribute(s)
+  ansible.windows.win_powershell:
+    script: |
+      Write-Verbose -Message "Update the user"
+      Set-ADUser -Identity {{ sam_account_name }} -Clear '{{ attribute_setstring }}'
+  register: script_output
+  when: "role_action == 'remove_attribute'"
+
+- name: Display result
+  debug:
+    msg: "{{ script_output.output }}"
