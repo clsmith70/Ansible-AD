@@ -1,2 +1,7 @@
 - name: Add user attribute
   import_tasks: set_ad_attribute.yml
+  when: "role_action == 'add_attribute' or role_action == 'remove_attribute'"
+
+- name: Reset user password
+  import_tasks: set_user_password.yml
+  when: "role_action == 'reset_password'"
