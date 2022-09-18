@@ -69,6 +69,14 @@ This role is used to perform CRUD operations on Active Directory user objects.&n
 
   &nbsp;
 
+  > #### variables when ```role_action``` == '```change_password```'
+  >
+  >    | Description            | Variable name              | Required | Where specified       |
+  >    | ---------------------- | -------------------------- |:--------:| --------------------- |
+  >    | User Id                | ```sam_account_name```     | yes      | extra_vars            |
+
+  &nbsp;
+
 - ### ```role_name```: [`delete`](/user/delete/)
 
 [`Return`](/README.md) to main
