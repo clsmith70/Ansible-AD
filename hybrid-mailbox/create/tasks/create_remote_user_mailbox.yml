@@ -2,7 +2,9 @@
   no_log: false
   ansible.windows.win_powershell:
     script: |
-      #[CmdletBinding(SupportsShouldProcess)]
+      [CmdletBinding(SupportsShouldProcess)]
+      param()
+      
       Write-Verbose -Message "Establish connection to Exchange on-premises"
       $password = ConvertTo-SecureString -String "{{ AD_PASSWORD }}" -AsPlainText -Force
       $credential = New-Object -TypeName System.Management.Automation.PSCredential("{{ AD_USERNAME }}", $password)
