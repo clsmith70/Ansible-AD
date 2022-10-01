@@ -26,4 +26,4 @@
   register: user_upn
 
 - set_fact:
-    user_principal_name: user_upn
+    user_principal_name: "{{ user_upn }}"
