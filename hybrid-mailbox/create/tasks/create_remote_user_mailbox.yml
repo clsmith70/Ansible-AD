@@ -1,0 +1,29 @@
+- name: Create remote mailbox for {{ sam_account_name }}
+  no_log: true
+  ansible.windows.win_powershell:
+    script: |
+      [CmdletBinding(SupportsShouldProcess)]
+      Write-Verbose -Message "Establish connection to Exchange on-premises"
+      $password = ConvertTo-SecureString -String "{{ AD_PASSWORD }}" -AsPlainText -Force
+      $credential = New-Object -TypeName System.Management.Automation.PSCredential("{{ AD_USERNAME }}", $password)
+      $hx = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri "{{ exchange_uri }}" -Name HybridServer -Credential $credential
+      Import-PSSession -Session $hx | Out-Null
+
+      $upn = "{{ sam_account_name }}@{{ email_domain }}"
+      $rra = "{{ sam_account_name }}@{{ m365_routing_domain }}"
+
+      if ($Ansible.CheckMode) {
+        Enable-RemoteMailbox -Identity {{ sam_account_name }} -PrimarySmtpAddress $upn -RemoteRoutingAddress $rra -WhatIf
+        Enable-RemoteMailbox -Identity {{ sam_account_name }} -Archive -WhatIf
+        Set-RemoteMailbox -Identity {{ sam_account_name }} -EmailAddressPolicyEnabled $true -WhatIf
+      } else {
+        Enable-RemoteMailbox -Identity {{ sam_account_name }} -PrimarySmtpAddress $upn -RemoteRoutingAddress $rra
+        Enable-RemoteMailbox -Identity {{ sam_account_name }} -Archive
+        Set-RemoteMailbox -Identity {{ sam_account_name }} -EmailAddressPolicyEnabled $true
+      }
+
+      Write-Output -InputObject $upn
+  register: user_upn
+
+- set_fact:
+    user_principal_name: user_upn
