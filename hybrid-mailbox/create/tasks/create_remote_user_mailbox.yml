@@ -1,4 +1,4 @@
-- name: Create remote mailbox for {{ sam_account_name }}
+- name: Create remote mailbox for {{ new_user_info.sam_account_name }}
   no_log: false
   ansible.windows.win_powershell:
     script: |
@@ -8,15 +8,11 @@
       $hx = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri "{{ exchange_uri }}" -Name HybridServer -Credential $credential
       Import-PSSession -Session $hx | Out-Null
 
-      $upn = "{{ sam_account_name }}@{{ email_domain }}"
-      $rra = "{{ sam_account_name }}@{{ m365_routing_domain }}"
+      $san = "{{ new_user_info.sam_account_name }}"
+      $upn = "{{ new_user_info.user_principal_name }}"
+      $rra = "$san@{{ m365_routing_domain }}"
 
-      Enable-RemoteMailbox -Identity {{ sam_account_name }} -PrimarySmtpAddress $upn -RemoteRoutingAddress $rra
-      Enable-RemoteMailbox -Identity {{ sam_account_name }} -Archive
-      Set-RemoteMailbox -Identity {{ sam_account_name }} -EmailAddressPolicyEnabled $true
-
-      Write-Output -InputObject $upn
-  register: user_upn
-
-- set_stats:
-    user_principal_name: "{{ user_upn.output }}"
+      Enable-RemoteMailbox -Identity $san -PrimarySmtpAddress $upn -RemoteRoutingAddress $rra
+      Enable-RemoteMailbox -Identity $san -Archive
+      Set-RemoteMailbox -Identity $san -EmailAddressPolicyEnabled $true
+      Set-ADUser -Identity $san -Add @{extensionAttribute6='baseUserLicense'}
