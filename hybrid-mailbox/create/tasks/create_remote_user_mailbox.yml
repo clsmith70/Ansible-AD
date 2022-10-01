@@ -11,9 +11,9 @@
       $upn = "{{ sam_account_name }}@{{ email_domain }}"
       $rra = "{{ sam_account_name }}@{{ m365_routing_domain }}"
 
-      Enable-RemoteMailbox -Identity {{ sam_account_name }} -PrimarySmtpAddress $upn -RemoteRoutingAddress $rra -WhatIf
-      Enable-RemoteMailbox -Identity {{ sam_account_name }} -Archive -WhatIf
-      Set-RemoteMailbox -Identity {{ sam_account_name }} -EmailAddressPolicyEnabled $true -WhatIf
+      Enable-RemoteMailbox -Identity {{ sam_account_name }} -PrimarySmtpAddress $upn -RemoteRoutingAddress $rra
+      Enable-RemoteMailbox -Identity {{ sam_account_name }} -Archive
+      Set-RemoteMailbox -Identity {{ sam_account_name }} -EmailAddressPolicyEnabled $true
 
       Write-Output -InputObject $upn
   register: user_upn
