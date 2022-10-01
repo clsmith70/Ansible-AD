@@ -2,7 +2,7 @@
   import_tasks: create_remote_user_mailbox.yml
   when: 
     - "role_task == 'user'"
-    - sam_account_name is defined
+    - new_user_info is defined
 
 # - name: Create shared mailbox
 #   import_tasks: create_remote_shared_mailbox.yml
