@@ -18,5 +18,5 @@
       Write-Output -InputObject $upn
   register: user_upn
 
-- set_fact:
-    user_principal_name: "{{ user_upn }}"
+- set_stats:
+    user_principal_name: "{{ user_upn.output }}"
