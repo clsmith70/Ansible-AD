@@ -1,0 +1,17 @@
+- name: Create user mailbox
+  import_tasks: create_remote_user_mailbox.yml
+  when: 
+    - "role_task == 'user'"
+    - sam_account_name is defined
+
+- name: Create shared mailbox
+  import_tasks: create_remote_shared_mailbox.yml
+  when: "role_task == 'shared'"
+
+- name: Create room mailbox
+  import_tasks: create_remote_room_mailbox.yml
+  when: "role_task == 'room'"
+
+- name: Create equipment mailbox
+  import_tasks: create_remote_equipment_mailbox.yml
+  when: "role_task == 'equipment'"
