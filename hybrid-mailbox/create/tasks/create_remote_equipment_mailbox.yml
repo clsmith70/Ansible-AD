@@ -1,0 +1,3 @@
+- name: Stub task
+  debug:
+    msg: "WIP --> {{ role_name }}::{{ role_task }}"
