@@ -1,0 +1,3 @@
+- name: Set standard mailbox properties
+  import_tasks: set_mailbox_properties.yml
+  when: "role_task == 'standard'"
