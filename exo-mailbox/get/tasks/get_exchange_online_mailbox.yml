@@ -1,0 +1,16 @@
+- name: Get EXO Mailbox Information
+  no_log: false
+  ansible.windows.win_powershell:
+    script: |
+      Write-Verbose -Message "Create credential"
+      $password = ConvertTo-SecureString -String "{{ M365_PASSWORD }}" -AsPlainText -Force
+      $credential = New-Object -TypeName System.Management.Automation.PSCredential("{{ M365_UPN }}", $password)
+
+      Write-Verbose -Message "Connect to MsolService"
+      Connect-MsolService -Credential $credential
+
+      Get-EXOMailbox -Anr {{ identity }} -PropertySets AddressList,Archive,Audit,Quota
+  register: online_mailbox
+
+- set_fact:
+  exo_mailbox: "{{ online_mailbox.output }}"
