@@ -25,3 +25,5 @@ This is the list of roles currently in this repository.&nbsp; The root main.yml 
 - [`exchange-contact`](docs/EXCHANGE_CONTACT.md)
 - [`exchange-distribution-group`](docs/EXCHANGE_DG.md)
 - [`user`](docs/AD_USER.md)
+- [`hybrid-mailbox`](docs/HYBRID_MBX.md)
+- [`exo-mailbox`](docs/EXO_MBX.md)
