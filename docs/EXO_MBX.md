@@ -8,11 +8,11 @@ This role is used to perform set and recovery tasks for remote mailboxes in Exch
 
 - ### ```role_name```: [`set`](/exo-mailbox/set/)
 
-   Sets the standard mailbox policy settings on a remote mailbox depending on which ```role_action``` is defined.&nbsp; The current valid value for ```role_action``` is ```standard```.
+   Sets the standard mailbox policy settings on a remote mailbox depending on which ```role_task``` is defined.&nbsp; The current valid value for ```role_task``` is ```standard```.
 
   &nbsp;
 
-  > #### variables when ```role_action``` == '```standard```'
+  > #### variables when ```role_task``` == '```standard```'
   >
   >    | Description               | Variable name                        | Required | Where specified  |
   >    | ------------------------- | ------------------------------------ |:--------:| ---------------- |
