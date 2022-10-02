@@ -13,4 +13,4 @@
   register: online_mailbox
 
 - set_fact:
-  exo_mailbox: "{{ online_mailbox.output }}"
+    exo_mailbox: "{{ online_mailbox.output }}"
