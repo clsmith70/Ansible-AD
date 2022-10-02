@@ -1,0 +1,3 @@
+- name: Get online mailbox
+  import_tasks: get_exchange_online_mailbox.yml
+  when: identity is defined
