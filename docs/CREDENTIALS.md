@@ -24,7 +24,7 @@
        label: AD Domain
    ```
 
-**Injector configuration**:
+**Injector Configuration**:
 
    ```yaml
    extra_vars:
@@ -49,12 +49,37 @@ Some role tasks send email to recipients and will require the creation of the fo
        secret: true
    ```
 
-**Injector configuration**:
+**Injector Configuration**:
 
    ```yaml
    extra_vars:
      API_KEY: '{{ api_key }}'
    ```
+
+---
+
+## **Name**: Microsoft 365
+
+**Input Configuration**:
+
+  ```yml
+  fields:
+    - id: user_principal_name
+      type: string
+      label: M365 User Principal Name
+    - id: password
+      type: string
+      label: M365 Password
+      secret: true
+  ```
+
+**Injector Configuration:**
+
+  ```yml
+  extra_vars:
+    M365_UPN: '{{ user_principal_name }}'
+    M365_PASSWORD: '{{ password }}'
+  ```
 
 ---
 
