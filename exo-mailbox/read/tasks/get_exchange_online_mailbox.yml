@@ -10,6 +10,7 @@
       Connect-ExchangeOnline -Credential $credential -ShowBanner:$false
 
       Get-EXOMailbox -Anr {{ identity }} -PropertySets AddressList,Archive,Audit,Quota
+    executable: pwsh.exe
   register: online_mailbox
 
 - set_fact:
