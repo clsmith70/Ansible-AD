@@ -17,29 +17,33 @@
       $user_principal_name = "$sam_account_name@{{ email_domain }}"
       $password = "{{ lookup('ansible.builtin.password', '/dev/null chars=ascii_letters,digits,punctuation length=14') }}"
 
-      Write-Verbose -Message "Create user splat"
-      $userData = @{
-        GivenName = $fn
-        Initials = $init
-        Surname = $ln
-        Title = '{{ job_title }}'
-        Department = '{{ department }}'
-        Path = '{{ department_user_ou_path }}'
-        SamAccountName = $sam_account_name
-        DisplayName = "$fn $ln"
-        Name = "$fn $ln"
-        EmployeeID = $eid
-        EmployeeNumber = $eid
-        UserPrincipalName = $user_principal_name
-        AccountPassword = (ConvertTo-SecureString -AsPlainText -Force -String $password)
-        Enabled = $true
-      }
+      try {
+        Write-Verbose -Message "Create user splat"
+        $userData = @{
+          GivenName = $fn
+          Initials = $init
+          Surname = $ln
+          Title = '{{ job_title }}'
+          Department = '{{ department }}'
+          Path = '{{ department_user_ou_path }}'
+          SamAccountName = $sam_account_name
+          DisplayName = "$fn $ln"
+          Name = "$fn $ln"
+          EmployeeID = $eid
+          EmployeeNumber = $eid
+          UserPrincipalName = $user_principal_name
+          AccountPassword = (ConvertTo-SecureString -AsPlainText -Force -String $password)
+          Enabled = $true
+        }
  
-      Write-Verbose -Message "Create user object"
-      New-ADUser @userData | Out-Null
+        Write-Verbose -Message "Create user object"
+        New-ADUser @userData | Out-Null
 
-      Write-Verbose "Return the new user data"
-      Write-Output -InputObject $userData
+        Write-Verbose "Return the new user data"
+        Write-Output -InputObject $userData
+      } catch {
+        $Ansible.Failed = $true
+      }
   register: ad_user_data
 
 - set_stats:
