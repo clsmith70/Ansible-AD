@@ -1,0 +1,19 @@
+- name: Set standard mailbox policies on {{ new_user_info.sam_account_name }}
+  ansible.windows.win_powershell:
+    script: |
+      Write-Verbose -Message "Create the setting splat object"
+      $sharedMailboxSettings = @{
+          AuditEnabled                      = $true
+          AuditLogAgeLimit                  = 180
+          AuditAdmin                        = @('Update', 'MoveToDeletedItems', 'SoftDelete', 'HardDelete', 'SendAs', 'SendOnBehalf', 'Create', 'UpdateFolderPermission')
+          AuditDelegate                     = @('Update', 'SoftDelete', 'HardDelete', 'SendAs', 'Create', 'UpdateFolderPermissions', 'MoveToDeletedItems', 'SendOnBehalf')
+          AuditOwner                        = @('UpdateFolderPermission', 'MailboxLogin', 'Create', 'SoftDelete', 'HardDelete', 'Update', 'MoveToDeletedItems')
+          LitigationHoldEnabled             = $false
+          MessageCopyForSentAsEnabled       = $true
+          MessageCopyForSendOnBehalfEnabled = $true
+          RetentionPolicy                   = 'Default MRM Policy'    
+          Identity                          = '{{ new_user_info.sam_account_name }}'
+      }
+
+      Write-Verbose -Message "Set the policies on the mailbox"
+      Set-EXOMailbox @sharedMailboxSettings
