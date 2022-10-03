@@ -1,3 +1,8 @@
 - name: Set standard mailbox properties
   import_tasks: set_mailbox_properties.yml
   when: "role_task == 'standard'"
+
+- name: Set standard mailbox properties
+  import_tasks: set_mailbox_properties_workflow.yml
+  when: "role_task == 'workflow'"
+  
