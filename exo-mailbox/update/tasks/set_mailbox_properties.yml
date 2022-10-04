@@ -1,5 +1,5 @@
-- name: Set standard mailbox policies on {{ mailbox_identity }}
-  no_log: false
+- name: Set standard mailbox policies on {{ identity }}
+  no_log: true
   ansible.windows.win_powershell:
     script: |
       Write-Verbose -Message "Create credential"
@@ -23,7 +23,7 @@
           MessageCopyForSentAsEnabled       = $true
           MessageCopyForSendOnBehalfEnabled = $true
           RetentionPolicy                   = 'Default MRM Policy'    
-          Identity                          = '{{ mailbox_identity }}'
+          Identity                          = '{{ identity }}'
       }
 
       Write-Verbose -Message "Set the policies on the mailbox"
