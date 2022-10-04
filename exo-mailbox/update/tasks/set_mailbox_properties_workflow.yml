@@ -16,9 +16,9 @@
       $standardMailboxSettings = @{
           AuditEnabled                      = $true
           AuditLogAgeLimit                  = 180
-          AuditAdmin                        = @('Update', 'MoveToDeletedItems', 'SoftDelete', 'HardDelete', 'SendAs', 'SendOnBehalf', 'Create', 'UpdateFolderPermission')
+          AuditAdmin                        = @('Update', 'MoveToDeletedItems', 'SoftDelete', 'HardDelete', 'SendAs', 'SendOnBehalf', 'Create', 'UpdateFolderPermissions')
           AuditDelegate                     = @('Update', 'SoftDelete', 'HardDelete', 'SendAs', 'Create', 'UpdateFolderPermissions', 'MoveToDeletedItems', 'SendOnBehalf')
-          AuditOwner                        = @('UpdateFolderPermission', 'MailboxLogin', 'Create', 'SoftDelete', 'HardDelete', 'Update', 'MoveToDeletedItems')
+          AuditOwner                        = @('UpdateFolderPermissions', 'MailboxLogin', 'Create', 'SoftDelete', 'HardDelete', 'Update', 'MoveToDeletedItems')
           LitigationHoldEnabled             = $false
           MessageCopyForSentAsEnabled       = $true
           MessageCopyForSendOnBehalfEnabled = $true
