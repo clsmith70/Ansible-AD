@@ -1,5 +1,5 @@
 - name: Set standard mailbox policies on {{ mailbox_identity }}
-  no_log: true
+  no_log: false
   ansible.windows.win_powershell:
     script: |
       Write-Verbose -Message "Create credential"
