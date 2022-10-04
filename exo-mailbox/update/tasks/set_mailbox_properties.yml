@@ -23,7 +23,7 @@
           MessageCopyForSentAsEnabled       = $true
           MessageCopyForSendOnBehalfEnabled = $true
           RetentionPolicy                   = 'Default MRM Policy'
-          RetainDeletedItemsFor             = 30.00:00:00    
+          RetainDeletedItemsFor             = '30.00:00:00'    
           Identity                          = '{{ identity }}'
       }
 
