@@ -22,7 +22,7 @@
           LitigationHoldEnabled             = $false
           MessageCopyForSentAsEnabled       = $true
           MessageCopyForSendOnBehalfEnabled = $true
-          RetentionPolicy                   = 'Default MRM Policy'
+        #  RetentionPolicy                   = 'Default MRM Policy'
           RetainDeletedItemsFor             = '30.00:00:00'    
           Identity                          = '{{ identity }}'
       }
