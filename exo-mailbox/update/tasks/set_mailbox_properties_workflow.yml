@@ -27,4 +27,4 @@
       }
 
       Write-Verbose -Message "Set the policies on the mailbox"
-      Set-EXOMailbox @standardMailboxSettings
+      Set-Mailbox @standardMailboxSettings
