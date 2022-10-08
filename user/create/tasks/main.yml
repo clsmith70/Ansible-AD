@@ -1,5 +1,5 @@
 - name: Create named user 
-  import_tasks: new_ad_user_employee.yml
+  import_tasks: new_ad_user.yml
   when: "role_task == 'named_user'"
 
 - name: Create legacy service account
