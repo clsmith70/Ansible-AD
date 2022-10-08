@@ -37,7 +37,7 @@
           Department = '{{ department }}'
           Path = $departmentUserOU
           SamAccountName = $sam_account_name
-          DisplayName = "$fn $ln"
+          DisplayName = $displayName
           Name = "$fn $ln"
           EmployeeID = $eid
           EmployeeNumber = $eid
