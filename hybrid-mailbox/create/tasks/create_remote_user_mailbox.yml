@@ -15,7 +15,7 @@
       Enable-RemoteMailbox -Identity $san -PrimarySmtpAddress $upn -RemoteRoutingAddress $rra
       Enable-RemoteMailbox -Identity $san -Archive
       Set-RemoteMailbox -Identity $san -EmailAddressPolicyEnabled $true
-      Set-ADUser -Identity $san -Add @{extensionAttribute6='baseUserLicense'}
+      Set-ADUser -Identity $san -Add @{{{ extension_attribute_string }}}
 
 - name: Set additional attributes
   no_log: true
