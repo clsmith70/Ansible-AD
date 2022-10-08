@@ -1,5 +1,5 @@
 - name: Create remote mailbox for {{ new_user_info.sam_account_name }}
-  no_log: true
+  no_log: false
   ansible.windows.win_powershell:
     script: |
       Write-Verbose -Message "Establish connection to Exchange on-premises"
@@ -18,7 +18,7 @@
       Set-ADUser -Identity $san -Add @{{{ extension_attribute_string }}}
 
 - name: Set additional attributes
-  no_log: true
+  no_log: false
   ansible.windows.win_powershell:
     script: |
       ConvertFrom-SecureString -AsPlainText -SecureString "{{ new_user_info.AccountPassword }}"
