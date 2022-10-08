@@ -1,5 +1,5 @@
 - name: Create remote mailbox for {{ new_user_info.sam_account_name }}
-  no_log: false
+  no_log: true
   ansible.windows.win_powershell:
     script: |
       Write-Verbose -Message "Establish connection to Exchange on-premises"
@@ -16,3 +16,27 @@
       Enable-RemoteMailbox -Identity $san -Archive
       Set-RemoteMailbox -Identity $san -EmailAddressPolicyEnabled $true
       Set-ADUser -Identity $san -Add @{extensionAttribute6='baseUserLicense'}
+
+- name: Set additional attributes
+  no_log: true
+  ansible.windows.win_powershell:
+    script: |
+      ConvertFrom-SecureString -AsPlainText -SecureString "{{ new_user_info.AccountPassword }}"
+  register: user_password
+
+- name: Create HTML report
+  ansible.builtin.template:
+      src: new-user-email.j2
+      dest: "/tmp/{{ tower_job_id }}.html"
+  delegate_to: 127.0.0.1
+
+- name: Send report
+  community.general.sendgrid:
+    api_key: "{{ SENDGRID_API_KEY }}"
+    to_addresses: "{{ recipient_email | split('\n') }}"
+    from_address: "{{ from_address }}"
+    from_name: "{{ from_name }}"
+    subject: "Job {{ tower_job_id }}: New Employee Account"
+    body: "{{ lookup('file', '/tmp/{{ tower_job_id }}.html') }}"
+    html_body: true
+  delegate_to: 127.0.0.1
