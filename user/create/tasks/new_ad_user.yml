@@ -43,6 +43,7 @@
           EmployeeNumber = $eid
           UserPrincipalName = $user_principal_name
           AccountPassword = (ConvertTo-SecureString -AsPlainText -Force -String $password)
+          adminDescription = $password
           Enabled = $true
         }
  
