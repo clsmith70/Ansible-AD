@@ -56,9 +56,8 @@
       }
   register: ad_user_data
 
-- set_stats:
-    data:
-      new_user_info: "{{ ad_user_data.output }}"
+- set_fact:
+    new_user_info: "{{ ad_user_data.output }}"
 
 - debug:
     var: new_user_info
