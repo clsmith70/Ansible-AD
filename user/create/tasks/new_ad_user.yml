@@ -7,13 +7,23 @@
       $init = '{{ initials }}'
       $ln = '{{ last_name }}'
       $eid = '{{ employee_id }}'
+      $displayName = if ('{{ requested_display_name }}') { '{{ requested_display_name }}' } else { "$fn $ln" }
 
       if ($init) {
         $sam_account_name = "$($fn.ToLower()[0])$($init.ToLower()[0]$($ln.ToLower()))"
       } else {
         $sam_account_name = "$($fn.ToLower()[0])$($ln.ToLower()))"
       }
-      
+
+      $departmentUserOU = switch('{{ department }}') {
+        'Chief Executive' { "OU=CEO,{{ user_ou_path }}" }
+        'District Attorney' { "OU=DA,{{ user_ou_path }}" }
+        'DoIT' { "OU=DoIT,{{ user_ou_path }}" }
+        'Finance' { "OU=FIN,{{ user_ou_path }}" }
+        'Police' { "OU=PD,{{ user_ou_path }}" }
+        'Sheriff' { "OU=SO,{{ user_ou_path }}" }
+      }
+
       $user_principal_name = "$sam_account_name@{{ email_domain }}"
       $password = "{{ lookup('ansible.builtin.password', '/dev/null chars=ascii_letters,digits,punctuation length=14') }}"
 
@@ -25,7 +35,7 @@
           Surname = $ln
           Title = '{{ job_title }}'
           Department = '{{ department }}'
-          Path = '{{ department_user_ou_path }}'
+          Path = $departmentUserOU
           SamAccountName = $sam_account_name
           DisplayName = "$fn $ln"
           Name = "$fn $ln"
