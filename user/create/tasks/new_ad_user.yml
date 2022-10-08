@@ -10,9 +10,9 @@
       $displayName = if ('{{ requested_display_name }}') { '{{ requested_display_name }}' } else { "$fn $ln" }
 
       if ($init) {
-        $sam_account_name = "$($fn.ToLower()[0])$($init.ToLower()[0]$($ln.ToLower()))"
+        $sam_account_name = "$($fn.ToLower()[0])$($init.ToLower()[0])$($ln.ToLower())"
       } else {
-        $sam_account_name = "$($fn.ToLower()[0])$($ln.ToLower()))"
+        $sam_account_name = "$($fn.ToLower()[0])$($ln.ToLower())"
       }
 
       $departmentUserOU = switch('{{ department }}') {
