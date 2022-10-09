@@ -60,4 +60,5 @@
   register: ad_user_data
 
 - set_stats:
-    new_user_info: "{{ ad_user_data.output[0] }}"
+    data:
+      new_user_info: "{{ ad_user_data.output[0] }}"
