@@ -60,7 +60,7 @@
   register: ad_user_data
 
 - debug:
-    msg: "{{ ad_user_data.output.EmployeeID }}"
+    msg: "{{ ad_user_data.output[0].EmployeeID }}"
 
 - set_stats:
     EmployeeID: "{{ ad_user_data.output.EmployeeID }}"
