@@ -7,7 +7,7 @@
       $init = '{{ initials }}'
       $ln = '{{ last_name }}'
       $eid = '{{ employee_id }}'
-      $displayName = if ('{{ requested_display_name }}') { '{{ requested_display_name }}' } else { "$fn $ln" }
+      $displayName = '{{ display_name }}'
 
       if ($init) {
         $sam_account_name = "$($fn.ToLower()[0])$($init.ToLower()[0])$($ln.ToLower())"
