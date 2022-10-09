@@ -12,10 +12,15 @@
       $upn = "{{ new_user_info.UserPrincipalName }}"
       $rra = "$san@{{ m365_routing_domain }}"
 
-      Enable-RemoteMailbox -Identity $san -PrimarySmtpAddress $upn -RemoteRoutingAddress $rra
-      Enable-RemoteMailbox -Identity $san -Archive
-      Set-RemoteMailbox -Identity $san -EmailAddressPolicyEnabled $true
-      Set-ADUser -Identity $san -Add @{{{ extension_attribute_string }}} -Clear adminDescription
+      Enable-RemoteMailbox -Identity $san -PrimarySmtpAddress $upn -RemoteRoutingAddress $rra | Out-Null
+      Enable-RemoteMailbox -Identity $san -Archive | Out-Null
+      Set-RemoteMailbox -Identity $san -EmailAddressPolicyEnabled $true | Out-Null
+      Get-ADUser -Identity $san -Properties adminDescription | Select-Object -Property adminDescription
+      Set-ADUser -Identity $san -Add @{{{ extension_attribute_string }}} -Clear adminDescription | Out-Null
+  register: user_password
+
+- set_fact:
+    password: "{{ user_password.output }}"
 
 - name: Create HTML report
   ansible.builtin.template:
