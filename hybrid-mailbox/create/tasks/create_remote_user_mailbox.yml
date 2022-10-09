@@ -15,7 +15,7 @@
       Enable-RemoteMailbox -Identity $san -PrimarySmtpAddress $upn -RemoteRoutingAddress $rra | Out-Null
       Enable-RemoteMailbox -Identity $san -Archive | Out-Null
       Set-RemoteMailbox -Identity $san -EmailAddressPolicyEnabled $true | Out-Null
-      Get-ADUser -Identity $san -Properties adminDescription | Select-Object -Property adminDescription
+      Get-ADUser -Identity $san -Properties adminDescription | Select-Object -ExpandProperty adminDescription
       Set-ADUser -Identity $san -Add @{extensionAttribute6='baseUserLicense'} -Clear adminDescription | Out-Null
   register: user_password
 
