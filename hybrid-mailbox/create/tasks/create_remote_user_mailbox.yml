@@ -16,7 +16,7 @@
       Enable-RemoteMailbox -Identity $san -Archive | Out-Null
       Set-RemoteMailbox -Identity $san -EmailAddressPolicyEnabled $true | Out-Null
       Get-ADUser -Identity $san -Properties adminDescription | Select-Object -Property adminDescription
-      Set-ADUser -Identity $san -Add @{{{ extension_attribute_string }}} -Clear adminDescription | Out-Null
+      Set-ADUser -Identity $san -Add @{"{{ extension_attribute_string }}"} -Clear adminDescription | Out-Null
   register: user_password
 
 - set_fact:
