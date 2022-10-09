@@ -30,7 +30,7 @@
 
 - name: Send report
   community.general.sendgrid:
-    api_key: "{{ SENDGRID_API_KEY }}"
+    api_key: "{{ API_KEY }}"
     to_addresses: "{{ recipient_email | split('\n') }}"
     from_address: "{{ from_address }}"
     from_name: "{{ from_name }}"
