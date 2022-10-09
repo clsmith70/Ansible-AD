@@ -1,5 +1,5 @@
 - name: Create AD User
-  no_log: false
+  no_log: true
   ansible.windows.win_powershell:
     script: |
       Write-Verbose -Message "Create user variables"
