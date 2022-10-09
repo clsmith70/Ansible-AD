@@ -60,9 +60,4 @@
   register: ad_user_data
 
 - set_stats:
-    EmployeeID: "{{ ad_user_data.output[0].EmployeeID }}"
-    GivenName: "{{ ad_user_data.output[0].GivenName }}"
-    Initials: "{{ ad_user_data.output[0].Initials }}"
-    Surname: "{{ ad_user_data.output[0].Surname }}"
-    Title: "{{ ad_user_data.output[0].Title }}"
-    UserPrincipalName: "{{ ad_user_data.output[0].UserPrincipalName }}"
+    new_user_info: "{{ ad_user_data.output[0] }}"
