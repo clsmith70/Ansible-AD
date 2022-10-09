@@ -59,5 +59,10 @@
       }
   register: ad_user_data
 
-- set_fact:
-    new_user_info: "{{ ad_user_data.output }}"
+- set_stats:
+    EmployeeID: "{{ ad_user_data.output.EmployeeID }}"
+    GivenName: "{{ ad_user_data.output.GivenName }}"
+    Initials: "{{ ad_user_data.output.Initials }}"
+    Surname: "{{ ad_user_data.output.Surname }}"
+    Title: "{{ ad_user_data.output.Title }}"
+    UserPrincipalName: "{{ ad_user_data.output.UserPrincipalName }}"
