@@ -1,5 +1,5 @@
 - name: Create AD User
-  no_log: false
+  no_log: true
   ansible.windows.win_powershell:
     script: |
       Write-Verbose -Message "Create user variables"
@@ -59,13 +59,10 @@
       }
   register: ad_user_data
 
-- debug:
-    msg: "{{ ad_user_data.output[0].EmployeeID }}"
-
 - set_stats:
-    EmployeeID: "{{ ad_user_data.output.EmployeeID }}"
-    GivenName: "{{ ad_user_data.output.GivenName }}"
-    Initials: "{{ ad_user_data.output.Initials }}"
-    Surname: "{{ ad_user_data.output.Surname }}"
-    Title: "{{ ad_user_data.output.Title }}"
-    UserPrincipalName: "{{ ad_user_data.output.UserPrincipalName }}"
+    EmployeeID: "{{ ad_user_data.output[0].EmployeeID }}"
+    GivenName: "{{ ad_user_data.output[0].GivenName }}"
+    Initials: "{{ ad_user_data.output[0].Initials }}"
+    Surname: "{{ ad_user_data.output[0].Surname }}"
+    Title: "{{ ad_user_data.output[0].Title }}"
+    UserPrincipalName: "{{ ad_user_data.output[0].UserPrincipalName }}"
