@@ -43,12 +43,13 @@
           EmployeeNumber = $eid
           UserPrincipalName = $user_principal_name
           AccountPassword = (ConvertTo-SecureString -AsPlainText -Force -String $password)
-          adminDescription = $password
           Enabled = $true
         }
  
         Write-Verbose -Message "Create user object"
         New-ADUser @userData | Out-Null
+        Write-Verbose -Message "Add password to account temporarily"
+        Set-ADUser -Identity $sam_account_name -Add @{adminDescription=$password}
 
         Write-Verbose "Return the new user data"
         Write-Output -InputObject $userData
