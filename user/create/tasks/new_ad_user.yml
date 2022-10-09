@@ -53,6 +53,7 @@
         Write-Verbose "Return the new user data"
         Write-Output -InputObject $userData
       } catch {
+        Write-Output $Error[0]
         $Ansible.Failed = $true
       }
   register: ad_user_data
