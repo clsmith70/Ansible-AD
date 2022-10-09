@@ -59,6 +59,9 @@
       }
   register: ad_user_data
 
+- debug:
+    var: ad_user_data
+    
 - set_stats:
     EmployeeID: "{{ ad_user_data.output.EmployeeID }}"
     GivenName: "{{ ad_user_data.output.GivenName }}"
