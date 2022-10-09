@@ -20,7 +20,7 @@
   register: user_password
 
 - set_fact:
-    password: "{{ user_password.output }}"
+    password: "{{ user_password.output[0] }}"
 
 - name: Create HTML report
   ansible.builtin.template:
